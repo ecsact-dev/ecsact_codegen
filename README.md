@@ -2,15 +2,15 @@
 	<img src="https://ecsact.dev/external/ecsact_logo/ecsact-color.png" width="300" />
 </p>
 
-# Ecsact CLI
+# Ecsact Codegen
 
-The Ecsact CLI is _the_ utility for the following:
+NOTE: This repository is the new location for everything codegen related. Plugins will still live in their respective `ecsact_lang_*` repositories, but the plugin and build system related tools will be moved here.
 
-* Code generation frontend
-* Benchmark utility
-* Config details about Ecsact SDK installation and builtins
 
-## Install
+## Migration progress
 
-Ecsact CLI ships with the Ecsact SDK. [ecsact.dev/start](https://ecsact.dev/start)
+- [x] ecsact_runtime bazel files
+- [ ] ecsact_runtime codegen related headers
+- [ ] ecsact_runtime plugin test code
+- [ ] ecsact_cli codegen API
 
