@@ -1,1 +1,1 @@
-module(name = "ecsact_cli")
+module(name = "ecsact_codegen")
