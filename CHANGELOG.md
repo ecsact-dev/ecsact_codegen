@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.0.2 - 2023-05-01
+#### Bug Fixes
+- actually export codegen_plugin.bzl - (ab3cbe6) - Ezekiel Warren
+- wrong name in MODULE.bazel - (b470d87) - Ezekiel Warren
+
+- - -
+
 ## 0.0.1 - 2023-05-01
 #### Bug Fixes
 - write proper README - (54edbc4) - Ezekiel Warren
