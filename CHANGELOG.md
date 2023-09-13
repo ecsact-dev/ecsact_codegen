@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.0.3 - 2023-09-13
+#### Bug Fixes
+- add missing bzlmod version - (c83ff1e) - Ezekiel Warren
+#### Miscellaneous Chores
+- add bzlmod archive github action - (6e7c929) - Ezekiel Warren
+- cog set module version - (79bcaf3) - Ezekiel Warren
+- sync with ecsact_common (#1) - (d947cb8) - seaubot
+
+- - -
+
 ## 0.0.2 - 2023-05-01
 #### Bug Fixes
 - actually export codegen_plugin.bzl - (ab3cbe6) - Ezekiel Warren
