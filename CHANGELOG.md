@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.0.4 - 2023-09-13
+#### Bug Fixes
+- added tests with proper deps (#7) - (f46bc07) - Ezekiel Warren
+#### Miscellaneous Chores
+- **(deps)** update com_grail_bazel_toolchain digest to c217c03 (#2) - (bd4dfde) - renovate[bot]
+- sync with ecsact_common (#5) - (5a28fe8) - seaubot
+- sync with ecsact_common (#4) - (f50f7c0) - seaubot
+
+- - -
+
 ## 0.0.3 - 2023-09-13
 #### Bug Fixes
 - add missing bzlmod version - (c83ff1e) - Ezekiel Warren
