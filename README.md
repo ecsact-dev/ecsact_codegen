@@ -10,7 +10,7 @@ NOTE: This repository is the new location for everything codegen related. Plugin
 ## Migration progress
 
 - [x] ecsact_runtime bazel files
-- [ ] ecsact_runtime codegen related headers
-- [ ] ecsact_runtime plugin test code
+- [x] ecsact_runtime codegen related headers
+- [x] ecsact_runtime plugin test code
 - [ ] ecsact_cli codegen API
 
