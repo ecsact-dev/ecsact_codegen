@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.1.1 - 2023-09-18
+#### Bug Fixes
+- incorrect ecsact_runtime version - (a1c6cd5) - Ezekiel Warren
+#### Miscellaneous Chores
+- sync with ecsact_common (#6) - (ee9f234) - seaubot
+
+- - -
+
 ## 0.1.0 - 2023-09-18
 #### Features
 - move codegen headers over (#11) - (d0d83e5) - Ezekiel Warren
