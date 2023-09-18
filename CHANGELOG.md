@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.1.0 - 2023-09-18
+#### Features
+- move codegen headers over (#11) - (d0d83e5) - Ezekiel Warren
+#### Miscellaneous Chores
+- **(deps)** update com_grail_bazel_toolchain digest to edc058a (#10) - (31a029b) - renovate[bot]
+- **(deps)** update com_grail_bazel_toolchain digest to e4fad4e (#9) - (092fdf1) - renovate[bot]
+- **(deps)** update com_grail_bazel_toolchain digest to df8ee5a (#8) - (8387325) - renovate[bot]
+
+- - -
+
 ## 0.0.4 - 2023-09-13
 #### Bug Fixes
 - added tests with proper deps (#7) - (f46bc07) - Ezekiel Warren
