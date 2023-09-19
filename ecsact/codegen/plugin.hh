@@ -7,7 +7,7 @@
 #include <cstring>
 #include <iterator>
 #include "ecsact/runtime/common.h"
-#include "ecsact/codegen_plugin.h"
+#include "ecsact/codegen/plugin.h"
 
 namespace ecsact {
 

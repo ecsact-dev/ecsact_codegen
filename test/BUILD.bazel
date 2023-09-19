@@ -7,6 +7,9 @@ cc_binary(
     name = "mock_plugin_bin",
     linkshared = True,
     copts = copts,
+    deps = [
+        "@ecsact_codegen//:plugin",
+    ],
 )
 
 ecsact_codegen_plugin(
