@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.1.2 - 2023-09-19
+#### Bug Fixes
+- bad include in C++ header (#13) - (b82af78) - Ezekiel Warren
+#### Miscellaneous Chores
+- **(deps)** update com_grail_bazel_toolchain digest to 3e6d4d9 (#12) - (9a9a5a8) - renovate[bot]
+
+- - -
+
 ## 0.1.1 - 2023-09-18
 #### Bug Fixes
 - incorrect ecsact_runtime version - (a1c6cd5) - Ezekiel Warren
