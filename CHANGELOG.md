@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.2.0 - 2024-04-04
+#### Features
+- remove obsolete cc plugin macros (#37) - (cc8c555) - Ezekiel Warren
+#### Miscellaneous Chores
+- **(deps)** update dependency ecsact_runtime to v0.6.0 (#20) - (b4ba2e6) - renovate[bot]
+- **(deps)** update hedron_compile_commands digest to eca42c6 (#31) - (1410504) - renovate[bot]
+- **(deps)** update com_grail_bazel_toolchain digest to ade23e0 (#30) - (3a7f426) - renovate[bot]
+- **(deps)** update com_grail_bazel_toolchain digest to 7500623 (#27) - (26e2ae2) - renovate[bot]
+- **(deps)** update com_grail_bazel_toolchain digest to 1e5f3c6 (#25) - (f3080d3) - renovate[bot]
+- **(deps)** update hedron_compile_commands digest to ac6411f (#24) - (6a1c608) - renovate[bot]
+- **(deps)** update com_grail_bazel_toolchain digest to 0a9feb7 (#23) - (56fbac8) - renovate[bot]
+- **(deps)** update com_grail_bazel_toolchain digest to 42fa12b (#22) - (3a1ba5f) - renovate[bot]
+- **(deps)** update com_grail_bazel_toolchain digest to a76d197 (#21) - (4d3544d) - renovate[bot]
+- **(deps)** update com_grail_bazel_toolchain digest to 91abcad (#19) - (45cc840) - renovate[bot]
+- sync with ecsact_common (#18) - (83cabfc) - seaubot
+
+- - -
+
 ## 0.1.3 - 2023-09-22
 #### Miscellaneous Chores
 - **(deps)** update dependency ecsact_runtime to v0.5.1 (#17) - (c0acc23) - renovate[bot]
