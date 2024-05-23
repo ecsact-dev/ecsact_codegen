@@ -4,9 +4,8 @@
 name: main
 
 on:
-  push:
-    branches:
-      - "**"
+  pull_request:
+  merge_group:
 
 jobs:
   typos-check:
@@ -21,13 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: greut/eclint-action@v0
       - uses: jidicula/clang-format-action@v4.11.0
         with: { clang-format-version: "18" }
 
   test-windows:
+    if: github.event_name == 'merge_group'
     runs-on: windows-latest
     steps:
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: |
             /Users/runneradmin/AppData/Local/bazelisk
@@ -40,9 +41,10 @@ jobs:
         working-directory: test
 
   test-linux:
+    if: github.event_name == 'merge_group'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.cache/bazelisk
