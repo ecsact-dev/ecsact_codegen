@@ -6,9 +6,7 @@
 #include <string_view>
 #include <cstring>
 #include <iterator>
-#ifdef __cpp_lib_format
-#	include <format>
-#endif
+#include <format>
 #include "ecsact/runtime/common.h"
 #include "ecsact/codegen/plugin.h"
 
@@ -106,37 +104,35 @@ struct codegen_plugin_context {
 		}
 	}
 
-#ifdef __cpp_lib_format
 	template<typename... Args>
 	auto writef(std::format_string<Args...> fmt, Args&&... args) {
-		auto str = std::format(fmt, std::make_format_args(args...));
+		auto str = std::format(fmt, std::forward(args)...);
 		write_(str.data(), static_cast<int32_t>(str.size()));
 	}
 
 	template<typename... Args>
 	auto info(std::format_string<Args...> fmt, Args&&... args) {
-		auto str = std::format(fmt, std::make_format_args(args...));
+		auto str = std::format(fmt, std::forward<Args>(args)...);
 		report_(ECSACT_CODEGEN_REPORT_INFO, str.data(), str.size());
 	}
 
 	template<typename... Args>
 	auto warn(std::format_string<Args...> fmt, Args&&... args) {
-		auto str = std::format(fmt, std::make_format_args(args...));
+		auto str = std::format(fmt, std::forward<Args>(args)...);
 		report_(ECSACT_CODEGEN_REPORT_WARNING, str.data(), str.size());
 	}
 
 	template<typename... Args>
 	auto error(std::format_string<Args...> fmt, Args&&... args) {
-		auto str = std::format(fmt, std::make_format_args(args...));
+		auto str = std::format(fmt, std::forward<Args>(args)...);
 		report_(ECSACT_CODEGEN_REPORT_ERROR, str.data(), str.size());
 	}
 
 	template<typename... Args>
 	auto fatal(std::format_string<Args...> fmt, Args&&... args) {
-		auto str = std::format(fmt, std::make_format_args(args...));
+		auto str = std::format(fmt, std::forward<Args>(args)...);
 		report_(ECSACT_CODEGEN_REPORT_FATAL, str.data(), str.size());
 	}
-#endif
 };
 
 } // namespace ecsact
