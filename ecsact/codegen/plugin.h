@@ -49,8 +49,8 @@ typedef enum ecsact_codegen_report_type {
 	ECSACT_CODEGEN_REPORT_WARNING,
 
 	/**
-	 * An error has occurred, but can still continue running. Will be shown to user
-	 * when possible.
+	 * An error has occurred, but can still continue running. Will be shown to
+	 * user when possible.
 	 */
 	ECSACT_CODEGEN_REPORT_ERROR,
 
