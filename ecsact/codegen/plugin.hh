@@ -6,6 +6,9 @@
 #include <string_view>
 #include <cstring>
 #include <iterator>
+#ifdef __cpp_lib_format
+#	include <format>
+#endif
 #include "ecsact/runtime/common.h"
 #include "ecsact/codegen/plugin.h"
 
@@ -15,21 +18,34 @@ namespace ecsact {
  * Helper type to give a more C++ friendly write function
  * @example
  *   void ecsact_codegen_plugin
- *     ( ecsact_package_id          package_id
- *     , ecsact_codegen_write_fn_t  write_fn
+ *     ( ecsact_package_id           package_id
+ *     , ecsact_codegen_write_fn_t   write_fn
+ *     , ecsact_codegen_report_fn_t  report_fn
  *     )
  *   {
- *     ecsact::codegen_plugin_context ctx{package_id, write_fn};
- *     ctx.write("Hello, World!\n");
+ *     ecsact::codegen_plugin_context ctx{package_id, write_fn, report_fn};
+ *     ctx.writef("Hello, World!\n");
+ *     ctx.info("We made it!");
  *   }
  */
 struct codegen_plugin_context {
-	const ecsact_package_id         package_id;
-	const ecsact_codegen_write_fn_t write_fn;
-	int                             indentation = 0;
+	const ecsact_package_id          package_id;
+	const ecsact_codegen_write_fn_t  write_fn;
+	const ecsact_codegen_report_fn_t report_fn;
+	int                              indentation = 0;
 
 	std::string get_indent_str() {
 		return std::string(indentation, '\t');
+	}
+
+	void report_(
+		ecsact_codegen_report_type report_type,
+		const char*                str_data,
+		int32_t                    str_data_len
+	) {
+		if(report_fn != nullptr) {
+			report_fn(report_type, str_data, str_data_len);
+		}
 	}
 
 	void write_(const char* str_data, int32_t str_data_len) {
@@ -56,6 +72,7 @@ struct codegen_plugin_context {
 	}
 
 	template<typename T>
+	[[deprecated("use writef instead")]]
 	void write(T&& arg) {
 		using NoRefT = std::remove_cvref_t<T>;
 
@@ -72,6 +89,7 @@ struct codegen_plugin_context {
 	}
 
 	template<typename... T>
+	[[deprecated("use writef instead")]]
 	void write(T&&... args) {
 		(write<T>(std::forward<T>(args)), ...);
 	}
@@ -87,6 +105,38 @@ struct codegen_plugin_context {
 			}
 		}
 	}
+
+#ifdef __cpp_lib_format
+	template<typename... Args>
+	auto writef(std::format_string<Args...> fmt, Args&&... args) {
+		auto str = std::format(fmt, std::make_format_args(args...));
+		write_(str.data(), static_cast<int32_t>(str.size()));
+	}
+
+	template<typename... Args>
+	auto info(std::format_string<Args...> fmt, Args&&... args) {
+		auto str = std::format(fmt, std::make_format_args(args...));
+		report_(ECSACT_CODEGEN_REPORT_INFO, str.data(), str.size());
+	}
+
+	template<typename... Args>
+	auto warn(std::format_string<Args...> fmt, Args&&... args) {
+		auto str = std::format(fmt, std::make_format_args(args...));
+		report_(ECSACT_CODEGEN_REPORT_WARNING, str.data(), str.size());
+	}
+
+	template<typename... Args>
+	auto error(std::format_string<Args...> fmt, Args&&... args) {
+		auto str = std::format(fmt, std::make_format_args(args...));
+		report_(ECSACT_CODEGEN_REPORT_ERROR, str.data(), str.size());
+	}
+
+	template<typename... Args>
+	auto fatal(std::format_string<Args...> fmt, Args&&... args) {
+		auto str = std::format(fmt, std::make_format_args(args...));
+		report_(ECSACT_CODEGEN_REPORT_FATAL, str.data(), str.size());
+	}
+#endif
 };
 
 } // namespace ecsact
