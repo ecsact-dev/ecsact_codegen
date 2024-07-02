@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.3.0 - 2024-07-02
+#### Features
+- codegen error reporting (#44) - (a1d6587) - Ezekiel Warren
+#### Miscellaneous Chores
+- **(deps)** update dependency bazel_skylib to v1.6.1 (#41) - (eed255a) - renovate[bot]
+- **(deps)** update dependency ecsact_runtime to v0.6.6 (#39) - (7618a57) - renovate[bot]
+- sync with ecsact_common (#48) - (7384f5f) - seaubot
+- sync with ecsact_common (#47) - (430f7b2) - seaubot
+- sync with ecsact_common (#46) - (9752ad4) - seaubot
+- sync with ecsact_common (#38) - (4720a06) - seaubot
+- remove bazel lock file - (98ebad3) - Ezekiel Warren
+- add typos config - (117fac8) - Ezekiel Warren
+
+- - -
+
 ## 0.2.0 - 2024-04-04
 #### Features
 - remove obsolete cc plugin macros (#37) - (cc8c555) - Ezekiel Warren
