@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.3.1 - 2024-07-02
+#### Bug Fixes
+- correctly wrap std::format (#49) - (cbaa826) - Ezekiel Warren
+
+- - -
+
 ## 0.3.0 - 2024-07-02
 #### Features
 - codegen error reporting (#44) - (a1d6587) - Ezekiel Warren
