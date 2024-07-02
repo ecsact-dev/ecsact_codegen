@@ -49,13 +49,13 @@ typedef enum ecsact_codegen_report_type {
 	ECSACT_CODEGEN_REPORT_WARNING,
 
 	/**
-	 * An error has occured, but can still continue running. Will be shown to user
+	 * An error has occurred, but can still continue running. Will be shown to user
 	 * when possible.
 	 */
 	ECSACT_CODEGEN_REPORT_ERROR,
 
 	/**
-	 * An error has occured and plugin cannot continue running. Will be shown to
+	 * An error has occurred and plugin cannot continue running. Will be shown to
 	 * user when possible.
 	 */
 	ECSACT_CODEGEN_REPORT_FATAL,
