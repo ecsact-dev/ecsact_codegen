@@ -78,6 +78,7 @@ inline auto set_codegen_plugin_output_filenames(
  */
 struct codegen_plugin_context {
 	const ecsact_package_id          package_id;
+	const int32_t                    filename_index;
 	const ecsact_codegen_write_fn_t  write_fn;
 	const ecsact_codegen_report_fn_t report_fn;
 	int                              indentation = 0;
@@ -92,7 +93,7 @@ struct codegen_plugin_context {
 		int32_t                    str_data_len
 	) {
 		if(report_fn != nullptr) {
-			report_fn(report_type, str_data, str_data_len);
+			report_fn(filename_index, report_type, str_data, str_data_len);
 		}
 	}
 
@@ -100,14 +101,14 @@ struct codegen_plugin_context {
 		assert(indentation >= 0);
 
 		if(indentation <= 0) {
-			write_fn(str_data, str_data_len);
+			write_fn(filename_index, str_data, str_data_len);
 		} else {
 			std::string_view str(str_data, str_data_len);
 			auto             indent_str = get_indent_str();
 			auto             nl_idx = str.find('\n');
 			while(nl_idx != std::string_view::npos) {
-				write_fn(str.data(), nl_idx + 1);
-				write_fn(indent_str.data(), indent_str.size());
+				write_fn(filename_index, str.data(), nl_idx + 1);
+				write_fn(filename_index, indent_str.data(), indent_str.size());
 				str =
 					std::string_view(str.data() + nl_idx + 1, str.size() - nl_idx - 1);
 				nl_idx = str.find('\n');

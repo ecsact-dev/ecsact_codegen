@@ -78,6 +78,7 @@ typedef enum ecsact_codegen_report_type {
  * @param msg_len - length of array of characters @p msg
  */
 typedef void (*ecsact_codegen_report_fn_t)( //
+	int32_t                    filename_index,
 	ecsact_codegen_report_type report_type,
 	const char*                msg,
 	int32_t                    msg_len
