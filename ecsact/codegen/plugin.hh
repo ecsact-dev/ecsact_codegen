@@ -115,7 +115,7 @@ struct codegen_plugin_context {
 			}
 
 			if(!str.empty()) {
-				write_fn(str.data(), static_cast<int32_t>(str.size()));
+				write_fn(filename_index, str.data(), static_cast<int32_t>(str.size()));
 			}
 		}
 	}
