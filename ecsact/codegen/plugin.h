@@ -28,10 +28,15 @@
  * @NOTE: it is _NOT_ assumed that @p str is null-terminated, you must set
  * @p str_len properly.
  *
+ * @param filename_index - index from output filenames from @ref
+ * ecsact_codegen_output_filenames. If @ref ecsact_codegen_output_filenames is
+ * not defined by the plugin then this parameter is ignored, otherwise it is
+ * an error to give a filename index >= to the output filenames length.
  * @param str - array of characters of length @p str_len
  * @param str_len - length of array of characters @p str
  */
 typedef void (*ecsact_codegen_write_fn_t)( //
+	int32_t     filename_index,
 	const char* str,
 	int32_t     str_len
 );
@@ -76,6 +81,21 @@ typedef void (*ecsact_codegen_report_fn_t)( //
 	ecsact_codegen_report_type report_type,
 	const char*                msg,
 	int32_t                    msg_len
+);
+
+/**
+ * @param package_id the package
+ * @param out_filenames filenames to write to. if `nullptr` this parameter is
+ * should be ignored. May only write to a max of @p max_filenames.
+ * @param out_filenames_length Must write the length of filenames this plugin
+ * writes to
+ */
+ECSACT_CODEGEN_PLUGIN_API void ecsact_codegen_output_filenames( //
+	ecsact_package_id package_id,
+	char* const*      out_filenames,
+	int32_t           max_filenames,
+	int32_t           max_filename_length,
+	int32_t*          out_filenames_length
 );
 
 ECSACT_CODEGEN_PLUGIN_API const char* ecsact_codegen_plugin_name();

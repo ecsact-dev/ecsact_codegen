@@ -7,10 +7,60 @@
 #include <cstring>
 #include <iterator>
 #include <format>
+#include <span>
 #include "ecsact/runtime/common.h"
 #include "ecsact/codegen/plugin.h"
 
 namespace ecsact {
+
+/**
+ * Helper function to implement the pesky ecsact_codegen_output_filenames C API.
+ * @example
+ * ```cpp
+ * auto ecsact_codegen_output_filenames( //
+ *   ecsact_package_id package_id,
+ *   char* const*      out_filenames,
+ *   int32_t           max_filenames,
+ *   int32_t           max_filename_length,
+ *   int32_t*          out_filenames_length
+ * ) -> void {
+ *   auto package_filename =
+ *     ecsact::meta::package_file_path(package_id).filename();
+ *
+ *   // Generate a .h and .cpp file for each package
+ *   ecsact::set_codegen_plugin_output_filenames(
+ *     {
+ *       package_filename.string() + ".h",
+ *       package_filename.string() + ".cpp",
+ *     },
+ *     out_filenames,
+ *     max_filenames,
+ *     max_filename_length,
+ *     out_filenames_length
+ *   );
+ * }
+ * ```
+ */
+inline auto set_codegen_plugin_output_filenames(
+	const std::span<std::string> filenames,
+	char* const*                 out_filenames,
+	int32_t                      max_filenames,
+	int32_t                      max_filename_length,
+	int32_t*                     out_filenames_length
+) -> void {
+	if(out_filenames != nullptr) {
+		for(auto i = 0; max_filenames > i; ++i) {
+			if(i >= filenames.size()) {
+				break;
+			}
+			strcpy_s(out_filenames[i], max_filename_length, filenames[i].c_str());
+		}
+	}
+
+	if(out_filenames_length != nullptr) {
+		*out_filenames_length = static_cast<int32_t>(filenames.size());
+	}
+}
 
 /**
  * Helper type to give a more C++ friendly write function
