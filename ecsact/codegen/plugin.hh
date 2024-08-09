@@ -42,23 +42,24 @@ namespace ecsact {
  * ```
  */
 inline auto set_codegen_plugin_output_filenames(
-	const std::span<std::string> filenames,
-	char* const*                 out_filenames,
-	int32_t                      max_filenames,
-	int32_t                      max_filename_length,
-	int32_t*                     out_filenames_length
+	const auto&  filenames,
+	char* const* out_filenames,
+	int32_t      max_filenames,
+	int32_t      max_filename_length,
+	int32_t*     out_filenames_length
 ) -> void {
 	if(out_filenames != nullptr) {
 		for(auto i = 0; max_filenames > i; ++i) {
-			if(i >= filenames.size()) {
+			if(i >= std::size(filenames)) {
 				break;
 			}
-			strcpy_s(out_filenames[i], max_filename_length, filenames[i].c_str());
+			auto filename = std::data(filenames) + i;
+			strcpy_s(out_filenames[i], max_filename_length, filename->c_str());
 		}
 	}
 
 	if(out_filenames_length != nullptr) {
-		*out_filenames_length = static_cast<int32_t>(filenames.size());
+		*out_filenames_length = static_cast<int32_t>(std::size(filenames));
 	}
 }
 
