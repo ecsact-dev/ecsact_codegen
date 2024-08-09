@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.4.0 - 2024-08-09
+#### Features
+- new codegen output api (#53) - (1f671ac) - Ezekiel Warren
+- expose codegen headers for SDK (#52) - (9ec86f0) - Ezekiel Warren
+#### Miscellaneous Chores
+- **(deps)** update dependency ecsact_runtime to v0.6.7 (#50) - (4178d6e) - renovate[bot]
+- update readme logo - (cae9c5d) - Ezekiel Warren
+
+- - -
+
 ## 0.3.1 - 2024-07-02
 #### Bug Fixes
 - correctly wrap std::format (#49) - (cbaa826) - Ezekiel Warren
