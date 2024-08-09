@@ -8,6 +8,7 @@
 #include <iterator>
 #include <format>
 #include <span>
+#include <string.h>
 #include "ecsact/runtime/common.h"
 #include "ecsact/codegen/plugin.h"
 
@@ -54,7 +55,11 @@ inline auto set_codegen_plugin_output_filenames(
 				break;
 			}
 			auto filename = std::data(filenames) + i;
+#if defined(__STDC_WANT_SECURE_LIB__) && __STDC_WANT_SECURE_LIB__
 			strcpy_s(out_filenames[i], max_filename_length, filename->c_str());
+#else
+			strcpy(out_filenames[i], filename->c_str());
+#endif
 		}
 	}
 
