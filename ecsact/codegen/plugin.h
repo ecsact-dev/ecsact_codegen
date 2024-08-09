@@ -30,7 +30,7 @@
  *
  * @param filename_index - index from output filenames from @ref
  * ecsact_codegen_output_filenames. If @ref ecsact_codegen_output_filenames is
- * not defined by the plugin then this parameter is ignored, otherwise it is
+ * not defined by the plugin then this parameter must be 0, otherwise it is
  * an error to give a filename index >= to the output filenames length.
  * @param str - array of characters of length @p str_len
  * @param str_len - length of array of characters @p str
