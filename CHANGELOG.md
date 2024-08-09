@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.4.1 - 2024-08-09
+#### Bug Fixes
+- add missing includes for codegen.hh (#54) - (026e5ca) - Ezekiel Warren
+
+- - -
+
 ## 0.4.0 - 2024-08-09
 #### Features
 - new codegen output api (#53) - (1f671ac) - Ezekiel Warren
