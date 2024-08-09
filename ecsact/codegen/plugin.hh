@@ -8,6 +8,7 @@
 #include <iterator>
 #include <format>
 #include <span>
+#include <string.h>
 #include "ecsact/runtime/common.h"
 #include "ecsact/codegen/plugin.h"
 
@@ -41,12 +42,12 @@ namespace ecsact {
  * }
  * ```
  */
-inline auto set_codegen_plugin_output_filenames(
-	const auto&  filenames,
-	char* const* out_filenames,
-	int32_t      max_filenames,
-	int32_t      max_filename_length,
-	int32_t*     out_filenames_length
+auto set_codegen_plugin_output_filenames(
+	const auto&              filenames,
+	char* const*             out_filenames,
+	int32_t                  max_filenames,
+	[[maybe_unused]] int32_t max_filename_length,
+	int32_t*                 out_filenames_length
 ) -> void {
 	if(out_filenames != nullptr) {
 		for(auto i = 0; max_filenames > i; ++i) {
@@ -54,7 +55,11 @@ inline auto set_codegen_plugin_output_filenames(
 				break;
 			}
 			auto filename = std::data(filenames) + i;
+#if defined(__STDC_WANT_SECURE_LIB__) && __STDC_WANT_SECURE_LIB__
 			strcpy_s(out_filenames[i], max_filename_length, filename->c_str());
+#else
+			strcpy(out_filenames[i], filename->c_str());
+#endif
 		}
 	}
 
