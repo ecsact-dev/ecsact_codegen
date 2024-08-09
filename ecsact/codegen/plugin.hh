@@ -7,10 +7,61 @@
 #include <cstring>
 #include <iterator>
 #include <format>
+#include <span>
 #include "ecsact/runtime/common.h"
 #include "ecsact/codegen/plugin.h"
 
 namespace ecsact {
+
+/**
+ * Helper function to implement the pesky ecsact_codegen_output_filenames C API.
+ * @example
+ * ```cpp
+ * auto ecsact_codegen_output_filenames( //
+ *   ecsact_package_id package_id,
+ *   char* const*      out_filenames,
+ *   int32_t           max_filenames,
+ *   int32_t           max_filename_length,
+ *   int32_t*          out_filenames_length
+ * ) -> void {
+ *   auto package_filename =
+ *     ecsact::meta::package_file_path(package_id).filename();
+ *
+ *   // Generate a .h and .cpp file for each package
+ *   ecsact::set_codegen_plugin_output_filenames(
+ *     {
+ *       package_filename.string() + ".h",
+ *       package_filename.string() + ".cpp",
+ *     },
+ *     out_filenames,
+ *     max_filenames,
+ *     max_filename_length,
+ *     out_filenames_length
+ *   );
+ * }
+ * ```
+ */
+inline auto set_codegen_plugin_output_filenames(
+	const auto&  filenames,
+	char* const* out_filenames,
+	int32_t      max_filenames,
+	int32_t      max_filename_length,
+	int32_t*     out_filenames_length
+) -> void {
+	if(out_filenames != nullptr) {
+		for(auto i = 0; max_filenames > i; ++i) {
+			if(i >= std::size(filenames)) {
+				break;
+			}
+			auto filename = std::data(filenames) + i;
+			strcpy_s(out_filenames[i], max_filename_length, filename->c_str());
+		}
+	}
+
+	if(out_filenames_length != nullptr) {
+		*out_filenames_length = static_cast<int32_t>(std::size(filenames));
+	}
+}
 
 /**
  * Helper type to give a more C++ friendly write function
@@ -28,6 +79,7 @@ namespace ecsact {
  */
 struct codegen_plugin_context {
 	const ecsact_package_id          package_id;
+	const int32_t                    filename_index;
 	const ecsact_codegen_write_fn_t  write_fn;
 	const ecsact_codegen_report_fn_t report_fn;
 	int                              indentation = 0;
@@ -42,7 +94,7 @@ struct codegen_plugin_context {
 		int32_t                    str_data_len
 	) {
 		if(report_fn != nullptr) {
-			report_fn(report_type, str_data, str_data_len);
+			report_fn(filename_index, report_type, str_data, str_data_len);
 		}
 	}
 
@@ -50,21 +102,21 @@ struct codegen_plugin_context {
 		assert(indentation >= 0);
 
 		if(indentation <= 0) {
-			write_fn(str_data, str_data_len);
+			write_fn(filename_index, str_data, str_data_len);
 		} else {
 			std::string_view str(str_data, str_data_len);
 			auto             indent_str = get_indent_str();
 			auto             nl_idx = str.find('\n');
 			while(nl_idx != std::string_view::npos) {
-				write_fn(str.data(), nl_idx + 1);
-				write_fn(indent_str.data(), indent_str.size());
+				write_fn(filename_index, str.data(), nl_idx + 1);
+				write_fn(filename_index, indent_str.data(), indent_str.size());
 				str =
 					std::string_view(str.data() + nl_idx + 1, str.size() - nl_idx - 1);
 				nl_idx = str.find('\n');
 			}
 
 			if(!str.empty()) {
-				write_fn(str.data(), static_cast<int32_t>(str.size()));
+				write_fn(filename_index, str.data(), static_cast<int32_t>(str.size()));
 			}
 		}
 	}

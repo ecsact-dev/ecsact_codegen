@@ -1,5 +1,7 @@
 #include "ecsact/codegen/plugin_validate.hh"
 
+#include <unordered_set>
+#include <string_view>
 #include <boost/dll/shared_library.hpp>
 #include <boost/dll/library_info.hpp>
 #include "ecsact/runtime/meta.h"
@@ -7,6 +9,7 @@
 
 namespace fs = std::filesystem;
 namespace dll = boost::dll;
+using namespace std::string_view_literals;
 using ecsact::codegen::plugin_validate_result;
 
 plugin_validate_result ecsact::codegen::plugin_validate(fs::path plugin_path) {
@@ -81,17 +84,16 @@ plugin_validate_result ecsact::codegen::plugin_validate(fs::path plugin_path) {
 		}
 	}
 
+	const auto valid_symbols = std::unordered_set{
+		"ecsact_codegen_output_filenames"sv,
+		"ecsact_codegen_plugin"sv,
+		"ecsact_codegen_plugin_name"sv,
+		"ecsact_dylib_has_fn"sv,
+		"ecsact_dylib_set_fn_addr"sv,
+	};
+
 	for(auto symbol : symbols) {
-		if(symbol == "ecsact_codegen_plugin") {
-			continue;
-		}
-		if(symbol == "ecsact_codegen_plugin_name") {
-			continue;
-		}
-		if(symbol == "ecsact_dylib_set_fn_addr") {
-			continue;
-		}
-		if(symbol == "ecsact_dylib_has_fn") {
+		if(valid_symbols.contains(symbol)) {
 			continue;
 		}
 
