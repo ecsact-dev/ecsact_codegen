@@ -42,12 +42,12 @@ namespace ecsact {
  * }
  * ```
  */
-inline auto set_codegen_plugin_output_filenames(
-	const auto&  filenames,
-	char* const* out_filenames,
-	int32_t      max_filenames,
-	int32_t      max_filename_length,
-	int32_t*     out_filenames_length
+auto set_codegen_plugin_output_filenames(
+	const auto&              filenames,
+	char* const*             out_filenames,
+	int32_t                  max_filenames,
+	[[maybe_unused]] int32_t max_filename_length,
+	int32_t*                 out_filenames_length
 ) -> void {
 	if(out_filenames != nullptr) {
 		for(auto i = 0; max_filenames > i; ++i) {
