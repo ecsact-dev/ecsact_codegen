@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.4.2 - 2024-10-05
+#### Bug Fixes
+- properly forward writef args - (761c150) - Ezekiel Warren
+#### Miscellaneous Chores
+- **(deps)** update dependency ecsact_runtime to v0.6.9 (#57) - (8da98d5) - renovate[bot]
+- **(deps)** update dependency ecsact_runtime to v0.6.8 (#55) - (1bf1e6f) - renovate[bot]
+- sync with ecsact_common (#56) - (9b0ff7a) - seaubot
+
+- - -
+
 ## 0.4.1 - 2024-08-09
 #### Bug Fixes
 - add missing includes for codegen.hh (#54) - (026e5ca) - Ezekiel Warren
