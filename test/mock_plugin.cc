@@ -34,4 +34,7 @@ auto ecsact_codegen_plugin( //
 	[[maybe_unused]] ecsact_codegen_write_fn_t  write_fn,
 	[[maybe_unused]] ecsact_codegen_report_fn_t report_fn
 ) -> void {
+	auto ctx = ecsact::codegen_plugin_context{package_id, 0, write_fn, report_fn};
+	auto world = std::string{"world"};
+	ctx.writef("hello {}", world);
 }

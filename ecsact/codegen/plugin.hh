@@ -163,7 +163,7 @@ struct codegen_plugin_context {
 
 	template<typename... Args>
 	auto writef(std::format_string<Args...> fmt, Args&&... args) {
-		auto str = std::format(fmt, std::forward(args)...);
+		auto str = std::format(fmt, std::forward<Args>(args)...);
 		write_(str.data(), static_cast<int32_t>(str.size()));
 	}
 
