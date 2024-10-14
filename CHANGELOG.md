@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.4.3 - 2024-10-14
+#### Miscellaneous Chores
+- update ecsact_runtime - (286f0b2) - Ezekiel Warren
+
+- - -
+
 ## 0.4.2 - 2024-10-05
 #### Bug Fixes
 - properly forward writef args - (761c150) - Ezekiel Warren
